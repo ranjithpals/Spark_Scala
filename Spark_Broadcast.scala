@@ -6,6 +6,8 @@ import scala.io.StdIn
 // Good Read on the Broadcast as an expensive operation due to collect action involved
 // https://stackoverflow.com/questions/38329738/how-to-transform-rdd-dataframe-or-dataset-straight-to-a-broadcast-variable-with
 
+// Find the average of Movie Ratings from Ratings file and display the average with the Movie Title
+
 object Spark_Broadcast extends App {
   
   Logger.getLogger("org").setLevel(Level.ERROR)
