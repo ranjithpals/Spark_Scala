@@ -11,4 +11,5 @@
 Examples of Broadcasted variable from
 - Local File
 - File in Cluster (RDD)
+
 ![Broadcast Value](Broadcast_value_to_executors.png)
