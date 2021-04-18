@@ -9,6 +9,6 @@
 // https://stackoverflow.com/questions/38329738/how-to-transform-rdd-dataframe-or-dataset-straight-to-a-broadcast-variable-with
 
 Examples of Broadcasted variable from
-Local File
-File in Cluster (RDD)
+- Local File
+- File in Cluster (RDD)
 -
