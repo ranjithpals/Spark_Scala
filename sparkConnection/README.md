@@ -13,7 +13,7 @@ Spark Session
 From <https://towardsdatascience.com/sparksession-vs-sparkcontext-vs-sqlcontext-vs-hivecontext-741d50c9486a> 
 
 **Analogy:**
-- Assume we are ENTERING to a Theme Park with multiple rides with each RIDE needing its own GEAR( Context or Session) to be worn in order to ENTER the RIDE (perform Operations on HIVE, SPARK, SQL) OR wear ONE UNIVERSAL GEAR which gives access to ALL RIDES (SPARK SESSION)
+Assume we are ENTERING to a Theme Park with multiple rides with each RIDE needing its own GEAR( Context or Session) to be worn in order to ENTER the RIDE (perform Operations on HIVE, SPARK, SQL) OR wear ONE UNIVERSAL GEAR which gives access to ALL RIDES (SPARK SESSION)
 
 - SparkContext:
 The SparkContext is used by the Driver Process of the Spark Application in order to establish a communication with the cluster and the resource managers in order to coordinate and execute jobs. 
