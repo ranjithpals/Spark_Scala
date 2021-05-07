@@ -21,7 +21,8 @@ SparkContext also enables the access to the other two contexts, namely SQLContex
 
 **SQLContext:**
 SQLContext is the entry point to SparkSQL which is a Spark module for structured data processing. Once SQLContext is initialised, the user can then use it in order to perform various “sql-like” operations over Datasets and DataFrame.
-In order to create a SQLContext, you first need to instantiate a SparkContext as shown below:
+In order to create a SQLContext, you first need to instantiate a SparkContext as shown below
+
 **HiveContext:**
 If your Spark Application needs to communicate with Hive and you are using Spark < 2.0 then you will probably need a HiveContext if . For Spark 1.5+, HiveContext also offers support for window functions.
 
