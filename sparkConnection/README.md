@@ -12,22 +12,21 @@ Spark Session
 
 From <https://towardsdatascience.com/sparksession-vs-sparkcontext-vs-sqlcontext-vs-hivecontext-741d50c9486a> 
 
-Analogy:
-Assume we are ENTERING to a Theme Park with multiple rides with each RIDE needing its own GEAR( Context or Session) to be worn in order to ENTER the RIDE (perform Operations on HIVE, SPARK, SQL) 
-OR wear ONE UNIVERSAL GEAR which gives access to ALL RIDES (SPARK SESSION)
+**Analogy:**
+- Assume we are ENTERING to a Theme Park with multiple rides with each RIDE needing its own GEAR( Context or Session) to be worn in order to ENTER the RIDE (perform Operations on HIVE, SPARK, SQL) OR wear ONE UNIVERSAL GEAR which gives access to ALL RIDES (SPARK SESSION)
 
-- SparkContext
+- SparkContext:
 The SparkContext is used by the Driver Process of the Spark Application in order to establish a communication with the cluster and the resource managers in order to coordinate and execute jobs. 
 SparkContext also enables the access to the other two contexts, namely SQLContext and HiveContext (more on these entry points later on).
 
-- SQLContext
+- SQLContext:
 SQLContext is the entry point to SparkSQL which is a Spark module for structured data processing. Once SQLContext is initialised, the user can then use it in order to perform various “sql-like” operations over Datasets and DataFrame.
 In order to create a SQLContext, you first need to instantiate a SparkContext as shown below:
 
-- HiveContext
+- HiveContext:
 If your Spark Application needs to communicate with Hive and you are using Spark < 2.0 then you will probably need a HiveContext if . For Spark 1.5+, HiveContext also offers support for window functions.
 
-- SparkSession
+- SparkSession:
 Spark 2.0 introduced a new entry point called SparkSession that essentially replaced both SQLContext and HiveContext. 
 Additionally, it gives to developers immediate access to SparkContext. In order to create a SparkSession with Hive support, all you have to do is in the above code.
 
