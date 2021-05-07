@@ -15,6 +15,9 @@ i.e. Every Action = Job
 	- INTERNAL Buffer is DISK space to which the Spark writes before it moves on to executing the next STAGE.
 	- It READS from this internal BUFFER at the start of the NEXT STAGE.
 
+LOGGER Functions
+- To set the LOG levels for the Spark Application: Logger.getLogger("org").setLevel(Level.ERROR)
+- To LOG custom text to to Spark Application: Logger.getLogger(getClass.getName).info("Application is completed succesfully")
 
 Spark count() function is a Action? or Tranformation?
 

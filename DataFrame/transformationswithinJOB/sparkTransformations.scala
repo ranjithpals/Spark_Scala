@@ -1,8 +1,12 @@
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
+import org.apache.log4j.Logger
+import org.apache.log4j.Level
 
 
 object sparkTransformations extends App {
+  
+  Logger.getLogger("org").setLevel(Level.ERROR)
   
   val conf = new SparkConf()
   conf.set("spark.app.name", "transfomrations")
@@ -29,6 +33,8 @@ object sparkTransformations extends App {
   
   //Display Schema
   groupedOrdersDF.printSchema()
+  
+  Logger.getLogger(getClass.getName).info("Application is completed succesfully")
   
   scala.io.StdIn.readLine()
   session.stop()
