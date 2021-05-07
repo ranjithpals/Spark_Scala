@@ -27,6 +27,9 @@ object sparkTransformations extends App {
   //Display Grouped DF
   groupedOrdersDF.show()
   
+  //Display Schema
+  groupedOrdersDF.printSchema()
+  
   scala.io.StdIn.readLine()
   session.stop()
   
