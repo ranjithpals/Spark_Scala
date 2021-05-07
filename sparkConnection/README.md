@@ -35,8 +35,8 @@ Spark 2.0 introduced a new entry point called SparkSession that essentially repl
 Additionally, it gives to developers immediate access to SparkContext. In order to create a SparkSession with Hive support, all you have to do is in the above code.
 
 
-• HAVING MULTIPLE SESSIONS AND USING SAME CONTEXT UNDERNEATH
-• HAVING MULTIPLE CONTEXTS
-• ADVANTAGES AND DISADVANTAGES
+- HAVING MULTIPLE SESSIONS AND USING SAME CONTEXT UNDERNEATH
+- HAVING MULTIPLE CONTEXTS
+- ADVANTAGES AND DISADVANTAGES
 
 https://medium.com/@achilleus/spark-session-10d0d66d1d24
