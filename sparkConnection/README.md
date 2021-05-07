@@ -1,14 +1,14 @@
-- Context, Session are essentially ENTRY POINTS FOR SPARK APPLICATIONS (typically to cluster, but same applies to Standalone mode as well) 
-- Every APPLICATION needs an ENTRY POINT to communicate with data sources and perform operations such as reading and writing.
+> Context, Session are essentially ENTRY POINTS FOR SPARK APPLICATIONS (typically to cluster, but same applies to Standalone mode as well) 
+> Every APPLICATION needs an ENTRY POINT to communicate with data sources and perform operations such as reading and writing.
 
-ENTRY POINTS
-- These modes were introduced in Spark 1.x
-- Spark Context, SQL Context, Hive Context 
-- New mode was introduced in Spark 2.x
+**ENTRY POINTS**
+> These modes were introduced in Spark 1.x
+> Spark Context, SQL Context, Hive Context 
+> New mode was introduced in Spark 2.x
 
-Spark Session
-- SparkSession has been introduced that essentially combined all functionalities available in the three aforementioned contexts. 
-- Note that all contexts are still available even in newest Spark releases, mostly for backward compatibility purposes.
+**Spark Session**
+> SparkSession has been introduced that essentially combined all functionalities available in the three aforementioned contexts. 
+> Note that all contexts are still available even in newest Spark releases, mostly for backward compatibility purposes.
 
 From <https://towardsdatascience.com/sparksession-vs-sparkcontext-vs-sqlcontext-vs-hivecontext-741d50c9486a> 
 
