@@ -18,7 +18,9 @@ empDF.groupBy($"department").agg(count($"department") as "countDepartment").show
 i.e. Every Action = Job
 - Job 1 - InferSchema = True, leads to Data Serialization: to materilaize the data for infering the data types, which is an ACTION
 - Job 2 - groupedDF.show() is an ACTION
-	- Stage 1 - Repartition the data which is a WIDE TRANSFORMATION
-	- Stage 2 - Map operation for FILTER AND SELECT OPERATION is a NARROW TRANSFORMATION
-	- Stage 3 - groupBy operation is a WIDE TRANSFORMATION, count() is a NARROW TRANSFORMATION
-	
+	- Stage 1 - Repartition the data which is a WIDE TRANSFORMATION.
+	- Stage 2 - Map operation for FILTER AND SELECT OPERATION is a NARROW TRANSFORMATION.
+	- Stage 3 - groupBy operation is a WIDE TRANSFORMATION, count() is a NARROW TRANSFORMATION.
+	- When there is a WIDE Transformation, the DAG shows 'Exchange' which is nothing but a INTERNAL Buffer.
+	- INTERNAL Buffer is DISK space to which the Spark writes before it moves on to executing the next STAGE.
+	- It READS from this internal BUFFER at the start of the NEXT STAGE.
