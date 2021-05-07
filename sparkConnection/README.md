@@ -40,4 +40,3 @@ Additionally, it gives to developers immediate access to SparkContext. In order 
 • ADVANTAGES AND DISADVANTAGES
 
 https://medium.com/@achilleus/spark-session-10d0d66d1d24
-![image](https://user-images.githubusercontent.com/39640906/117449762-55decd80-af0e-11eb-90bb-0284b4371bd2.png)
