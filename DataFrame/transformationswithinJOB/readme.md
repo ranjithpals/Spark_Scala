@@ -1,6 +1,6 @@
-Number of JOBS is ideally equal to number of ACTIONS
-each JOB will have STAGES - number of SHUFFLE boundaries
-each STAGE will have TASKS - number of PARTITIONS
+- Number of JOBS is ideally equal to number of ACTIONS
+- each JOB will have STAGES - number of SHUFFLE boundaries
+- each STAGE will have TASKS - number of PARTITIONS
 
 ![Multiple Jobs & Stages within](DFJobs.png)
 
