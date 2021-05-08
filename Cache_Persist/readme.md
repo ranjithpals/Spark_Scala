@@ -21,7 +21,6 @@
 	- This means the EVERY TIME AN ACTION is Performed (Data Frame created from a JOIN), ALL the STAGES are executed, which is uses up a LOT of CPU and MEMORY
 
 **RDD IS CACHED**
-
 	- Cached RDD is NOT executed from the Initial Stage (In reality SPARK does not execute from the Initial 
 	- AVOIDS READING FROM DISK when used in FURTHER operations
 
