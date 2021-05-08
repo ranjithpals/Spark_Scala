@@ -3,9 +3,9 @@
 
 **ENTRY POINTS**
 > These modes were introduced in Spark 1.x
-  1 Spark Context
-  2 SQL Context
-  3 Hive Context 
+  1. Spark Context
+  2. SQL Context
+  3. Hive Context 
 > New mode was introduced in Spark 2.x
 
 **Spark Session**
