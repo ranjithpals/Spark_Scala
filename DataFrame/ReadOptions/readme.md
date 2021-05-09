@@ -55,7 +55,7 @@ at org.apache.spark.sql.catalyst.json.JsonInferSchema$$anonfun$1$$anonfun$apply$
 **SCHEMA OPTIONS**
 1. INFER - inferSchema OPTION
 2. IMPLICIT - PARQUET, AVRO format etc.
-3. EXPLICIT - case class (<definition>)
+3. EXPLICIT - Manually defining the SCHEMA [case class (<definition>)]
 
 **SPARK DATAFRAME OPERATIONS**
 1. Read the data from DataSource and create a DataFrame/Datasets.
