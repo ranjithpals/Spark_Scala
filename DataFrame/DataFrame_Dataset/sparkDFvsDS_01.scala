@@ -35,7 +35,7 @@ object sparkDFvsDS_01 extends App {
   //Convert DataFrame to Dataset
   val ordersDs = ordersDF.as[ordersClass]
   //Filter by Order_id, dataset of custom object type is type safe.
-  ordersDs.filter(_.order_id > 1000)
+  ordersDs.filter(_.order_id > 1000) // same as ordersDF.filter(x => x.order_id > 1000)
   //Display the Dataset
   ordersDs.show(5)
   
