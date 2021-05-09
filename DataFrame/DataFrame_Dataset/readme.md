@@ -5,7 +5,7 @@
 
 - With DataFrames, data type errors are found ONLY at run-time.
 ![image](https://user-images.githubusercontent.com/39640906/117556782-9c314b00-b03a-11eb-85c4-556f8e0e7abc.png)
-orders_id is incorrect column name, but is not recognized by the compiler, so can lead to suprises during run-time.
+- orders_id is incorrect column name, but is not recognized by the compiler, so can lead to suprises during run-time.
 
 **DATASETS**
 - Dataset definition need to be specified with Custom Object Type
