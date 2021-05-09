@@ -2,9 +2,9 @@
 
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
-import java.sql.Timestamp
 import org.apache.log4j.Level
 import org.apache.log4j.Logger
+import java.sql.Timestamp
 import org.apache.spark.sql.Dataset
 import org.apache.spark.sql.Row
 
@@ -30,9 +30,8 @@ object sparkDFvsDS_02 extends App {
   .option("inferSchema", true)
   .csv(filePath)
   
-  
-  //Filter by Order_id, dataset of custom object type is type safe.
-  ordersDF.filter("order_id > 1000")
+  //Filter by Order_id, dataset of custom object type is NOT type safe.
+  ordersDF.filter("orders_id > 1000")
   //Display the Dataset
   ordersDF.show(10)
   
