@@ -66,4 +66,3 @@ at org.apache.spark.sql.catalyst.json.JsonInferSchema$$anonfun$1$$anonfun$apply$
 4. Spark gives you a JDBC connector to ingest the data from mysql database directly.
 5. **Recommended** - Use tools like Sqoop which are specifically made for data ingestion to get your data from external source to internal source
 6. Write the data to the Target (SINK)
-7. 
