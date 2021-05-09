@@ -58,4 +58,12 @@ at org.apache.spark.sql.catalyst.json.JsonInferSchema$$anonfun$1$$anonfun$apply$
 3. EXPLICIT - case class (<definition>)
 
 **SPARK DATAFRAME OPERATIONS**
-1. 
+1. Read the data from DataSource and create a DataFrame/Datasets.
+  - External Data Source: Data is NOT stored in distributed environment (mySQL database, redshift, mongodb)
+  - Internal Data Source: Data is stored in distributed environment (hdfs, S3, azure blob, google storage)
+2. Spark is generally good at processing but is not efficient at ingesting data.
+3. Before Spark processes data, ingest data into an Internal data source before applying Transformations and Actions.
+4. Spark gives you a JDBC connector to ingest the data from mysql database directly.
+5. **Recommended** - Use tools like Sqoop which are specifically made for data ingestion to get your data from external source to internal source
+6. Write the data to the Target (SINK)
+7. 
