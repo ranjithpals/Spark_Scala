@@ -1,22 +1,22 @@
-- Writing a DataFrame to a Sink (Output)
+- **Writing a DataFrame to a Sink (Output)**
 1. Create a RDD by reading from a file (Local or Cluster)
 2. Convert RDD to RDD[Row]
 3. Create a Schema using StructType
 4. Convert RDD[Row] to DataFrame
 
-- Save Modes
+- **Save Modes**
 1. append - putting the file in the existing folder
 2. overwrite - first delete the existing folder, and then create a new one
 3. errorIfexists - will error out if output folder exists
 4. ignore - if folder exists, it will ignore
 
-- File Formats
+- **File Formats**
 1. Default File Format, if not specified is 'Parquet', DataFrame is saved in parquet format
 2. Avro file format is not supported by default in version 2.4, but is available by default in 3.1 - current version.
 3. For 2.4, we need to import an external JAR - https://mvnrepository.com/artifact/org.apache.spark/spark-avro_2.11/2.4.4
 4. csv, json, parquet are built-in file formats
 
-- Find Number of Partitions
+- **Find Number of Partitions**
 1. Convert the DataFrame to RDD to get the Number of Partitions: DF.rdd.getNumPartitions
 
 - **Spark File Layout**
