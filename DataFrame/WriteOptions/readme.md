@@ -1,5 +1,4 @@
-**CREATE DATAFRAME FROM RDD**
-- Using createDataFrame method and Schema
+- Writing a DataFrame to a Sink (Output)
 1. Create a RDD by reading from a file (Local or Cluster)
 2. Convert RDD to RDD[Row]
 3. Create a Schema using StructType
@@ -21,11 +20,20 @@
 1. Convert the DataFrame to RDD to get the Number of Partitions: DF.rdd.getNumPartitions
 
 - **Spark File Layout**
-1. Repartition: DF.repartition(num)
+  **Repartition**
+1. **Number of Files**
 - Creates the exact number of files as mentoined in the repartition
-- Due to more number of files, it can aid Parallelism in the downstream operations
+- Used to create more number of files which aids in achieving Parallelism for the downstream operations.
 - But Partition Pruning is not possible as all the files have to be scanned for any filter operations.
-2. 
+2. **File size**
+- Ensures each part file contains only n number of records
+- Number of files is based on the total number of records within the dataframe/dataset
+- .option("maxRecordsPerFile", 20000)
+3. **Partitioning and Bucketing**
+- Partition is similar to Partitioning in Hive: PartitionBy("col1", "col2",..)
+- Bucketing is similar to Bucketing in Hive: BucketBy
+4. **SortBy**
+- 
 
 
 Reference Links:
