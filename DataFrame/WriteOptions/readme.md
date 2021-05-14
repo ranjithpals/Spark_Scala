@@ -20,8 +20,7 @@
 1. Convert the DataFrame to RDD to get the Number of Partitions: DF.rdd.getNumPartitions
 
 - **Spark File Layout**
-  **Repartition**
-1. **Number of Files**
+1. **Repartition-Number of Files**
 - Creates the exact number of files as mentoined in the repartition
 - Used to create more number of files which aids in achieving Parallelism for the downstream operations.
 - But Partition Pruning is not possible as all the files have to be scanned for any filter operations.
