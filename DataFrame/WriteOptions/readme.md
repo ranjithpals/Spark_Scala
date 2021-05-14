@@ -21,7 +21,7 @@
 
 - **Spark File Layout**
 1. **Repartition-Number of Files**
-- Creates the exact number of files as mentoined in the repartition
+- Creates the exact number of files as mentoined in the repartition - df.repartition(num)
 - Used to create more number of files which aids in achieving Parallelism for the downstream operations.
 - But Partition Pruning is not possible as all the files have to be scanned for any filter operations.
 2. **File size**
