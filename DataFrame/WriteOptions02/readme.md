@@ -19,5 +19,5 @@
 1. spark.sql("create database if not exists retail"), df.saveAsTable("retail.orders")
 2. spark.catalog.listTables("retail").show()
 	
-![DB Structure in Local Mode](DB_Structure.png)
+![DB Structure in Local Mode](DB_Structure.PNG)
 
