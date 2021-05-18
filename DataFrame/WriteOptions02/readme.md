@@ -15,9 +15,9 @@
 2. we can use hive metastore to handle spark metastore (for that we need to enableHiveSupport() while creating the Spark Session)
 3. With Spark ver 2.4.4, and Scala ver 2.11 the Hive Metastore connection is not provided by default and need to add a jar.
 4. URL: https://mvnrepository.com/artifact/org.apache.spark/spark-hive_2.11/2.4.4
-- *Create Database and Table utilizing the Hive Metastore*
+- *Create Database and Table utilizing the Hive Metastore and view all tables in Catalog metastore*
 1. spark.sql("create database if not exists retail"), df.saveAsTable("retail.orders")
-- *View all the tables in the Catalog metastore*
-1. spark.catalog.listTables("retail").show()
+2. spark.catalog.listTables("retail").show()
 	
+![DB Structure in Local Mode](DB_Structure.png)
 
