@@ -1,5 +1,5 @@
 Read CSV script has 3 Actions (Jobs)
-CSV file: https://sdm.lbl.gov/fastbit/data/samples.html
+- CSV file: https://sdm.lbl.gov/fastbit/data/samples.html
 
 ![3 Actions for this sparkReadCsv.scala](DF1.png)
 
