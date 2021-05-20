@@ -1,2 +1,2 @@
 - Selecting columns of a DataFrame
-> Multiple ways of selecting a column from a DataFrame
+> Multiple ways of selecting a column from a DataFrame. [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/Select_Columns)
