@@ -28,3 +28,5 @@
  ```
  session.catalog.listFunctions().filter(x => x.name == "adultBoolFunc1").show()
  ```
+- Whenever we register a UDF with driver, driver will serialize it (covert to bytes) and will send to the executor. 
+- This is same with any built-in libtrary which are sent to executor as part of job/task execution
