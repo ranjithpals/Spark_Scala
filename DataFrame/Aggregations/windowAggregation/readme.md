@@ -1,7 +1,7 @@
 **Window Aggregations**
 - When defining any window function, need 3 things defined within
-> PartitionBy
-> OrderBy
+> PartitionBy,
+> OrderBy,
 > RowsBetween
 - Aggregation function .over(windowfunc)
 
