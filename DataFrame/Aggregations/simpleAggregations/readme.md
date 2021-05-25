@@ -1,10 +1,9 @@
 **Simple Aggregations**
- - /*Find the following Aggregations
+ - Find the following Aggregations
    * Number of Rows
    * Sum of Quantity
    * Avg Unit Price
    * Distinct Number of InvoiceNos
-   */
 ```
   //Using Column Object
   ordersDF.select(
