@@ -8,3 +8,5 @@
 > Find the Number of Rows, Sum of Quantity, Avg Unit Price, Distinct Number of InvoiceNos [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/Aggregations/simpleAggregations)
 - Grouping Aggregations
 > Find the Sum of Quantity and Sum of Invoice's value when GROUPED BY country, InvoiceNo [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/Aggregations/groupingAggregations)
+- Window Aggregation
+> Create a Window function and apply the window function over an aggregation [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/Aggregations/windowAggregation)
