@@ -27,3 +27,21 @@
   //Select Columns -> Use .selectExpr to use all col strings along with expressions without explicit conversions
   ordersDF.selectExpr("order_id", "order_date", "concat(order_status, '_STATUS')").show(false)
 ```
+**RENAME COLUMN**
+```
+ val ordersNew = ordersDF.withColumnRenamed("customer_id", "cust_id")
+```
+**DROP COLUMN**
+- Example here is after performing a join operation, so the column needs a table reference
+```
+ val ordersNew = ordersDF.withColumnRenamed("customer_id", "cust_id")
+```
+**COALESCE FUNCTION**
+```
+  //Replace Null values with a common representation for such values
+  val outerjoin3 = outerJoin2
+  .select("order_id", "customer_fname", "customer_id", "order_status")
+  .sort("order_id")
+  .withColumn("order_id", expr("coalesce(order_id, -1)"))
+  .show(100)
+```
