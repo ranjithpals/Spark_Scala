@@ -17,13 +17,11 @@
 ```
 > 2, Mary, Bannett, XXXXXXX, XXXX, 9256 Noble Embers Ridge, Littelton, CO, 80126
 ```
-
 > Orders Data
 ```
 > 35158, 2014-02-26 00:00:00.0, 3, COMPLETE
 > 15192, 2013-10-29 00:00:00.0, 2, PENDING_PAYMENT
 ```
-
 - Upon Join Operation on customer_id
 ```
 > (2, {15192, 2013-10-29 00:00:00.0, 2, PENDING_PAYMENT})
@@ -43,7 +41,7 @@
 3. From this exchange, Spark Framework can read it and perform the shuffle.
 4. All the records with same Key (customer_id) are sent to the reducer exchange - SHUFFLE.
 5. SORT - The records are sorted after the shuffle, then MERGED and JOIN is performed.
-![image](https://user-images.githubusercontent.com/39640906/120092101-8a454400-c0de-11eb-83e3-890a10c7a754.png)
+![image](https://user-images.githubusercontent.com/39640906/120114114-97e4e300-c14b-11eb-96dd-9e44f2758478.png)
 
 **INNER JOIN - AUTOMATICALLY FACILITATES AUTO-BROADCASTING**
 ![image](https://user-images.githubusercontent.com/39640906/120092258-82d26a80-c0df-11eb-8eac-bd621161f896.png)
