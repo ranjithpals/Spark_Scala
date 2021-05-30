@@ -44,11 +44,14 @@
 ![image](https://user-images.githubusercontent.com/39640906/120114114-97e4e300-c14b-11eb-96dd-9e44f2758478.png)
 
 **INNER JOIN - AUTOMATICALLY FACILITATES AUTO-BROADCASTING**
-![image](https://user-images.githubusercontent.com/39640906/120092258-82d26a80-c0df-11eb-8eac-bd621161f896.png)
+![image](https://user-images.githubusercontent.com/39640906/120114137-c367cd80-c14b-11eb-82a6-efc975c433fd.png)
 
 **TO RESTRICT AUTOMATIC BROADCASTING DURING JOIN OPERATIONS**
 1. Set the Spark sql parameter 'spark.sql.autoBroadcastJoinThreshold = -1'
-![image](https://user-images.githubusercontent.com/39640906/120092298-d80e7c00-c0df-11eb-8100-164a5ca9f0b1.png)
+![image](https://user-images.githubusercontent.com/39640906/120114195-fca03d80-c14b-11eb-8a43-8d9901647995.png)
+![image](https://user-images.githubusercontent.com/39640906/120114207-0aee5980-c14c-11eb-87c8-701c83e2ad6b.png)
+![image](https://user-images.githubusercontent.com/39640906/120114175-eeeab800-c14b-11eb-9e81-af44cb382e93.png)
+
 
 
 
