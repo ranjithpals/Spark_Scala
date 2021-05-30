@@ -44,7 +44,7 @@
 ![image](https://user-images.githubusercontent.com/39640906/120114114-97e4e300-c14b-11eb-96dd-9e44f2758478.png)
 
 **INNER JOIN - AUTOMATICALLY FACILITATES AUTO-BROADCASTING**
-![image](https://user-images.githubusercontent.com/39640906/120114137-c367cd80-c14b-11eb-82a6-efc975c433fd.png)
+- ![image](https://user-images.githubusercontent.com/39640906/120114137-c367cd80-c14b-11eb-82a6-efc975c433fd.png)
 
 **TO RESTRICT AUTOMATIC BROADCASTING DURING JOIN OPERATIONS**
 1. Set the Spark sql parameter 'spark.sql.autoBroadcastJoinThreshold = -1'
