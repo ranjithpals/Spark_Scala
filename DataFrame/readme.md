@@ -1,5 +1,5 @@
 - Selecting columns of a DataFrame
-> Multiple ways of selecting a column from a DataFrame. [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/Select_Columns)
+> Multiple ways of selecting a column from a DataFrame. [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/ColumnOperations)
 - Creating UDF's for DataFrames
 > Multiple ways of creating UDF's (custom object expression udf, sql/string expression udf) [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/UDF)
 - DataFrame UseCase01
@@ -12,3 +12,5 @@
 > Create a Window function and apply the window function over an aggregation [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/Aggregations/windowAggregation)
 - Joins in DataFrame
 > Syntax for DF join is DF1.join(DF2, joinCondition, joinType).(transformation/grouping/ordering) [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/JoinsDF)
+- Column Operations on a DataFrame
+> Column Rename, Drop and Coalesce functions on a DataFrame. [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/ColumnOperations)
