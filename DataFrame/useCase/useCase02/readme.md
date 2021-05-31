@@ -1,5 +1,4 @@
-**UseCase02**
-**Apply Date Functions and perform Aggregations**
+**UseCase02 - Apply Date Functions and perform Aggregations**
 - Extract the Whole Month from the date value - date_format(<date>, "MMMM")
 - Extract the three characters of month from the date value - date_format(<date>, "MMM")
 - Extract the number of the month - cast(date_format(<date>, "M")) as Int)
