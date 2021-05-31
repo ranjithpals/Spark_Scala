@@ -9,6 +9,7 @@
   - SQL query should just have SELECT and FROM statements
   - Group By and Pivot should be applied only to a DataFrame
   - .groupBy(<column>).pivot(<column>).count() {aggregation}
+```
 +-----+-------+--------+-----+-----+-----+-----+-----+------+---------+-------+--------+--------+
 |level|January|Febraury|March|April|  May| June| July|August|September|October|November|December|
 +-----+-------+--------+-----+-----+-----+-----+-----+------+---------+-------+--------+--------+
@@ -18,3 +19,4 @@
 |FATAL|     94|    null|   70|   83|   60|   78|   98|    80|       81|     92|   16797|      94|
 |DEBUG|  41961|    null|41652|41869|41785|41774|42085| 42147|    41433|  41936|   33366|   41749|
 +-----+-------+--------+-----+-----+-----+-----+-----+------+---------+-------+--------+--------+
+```
