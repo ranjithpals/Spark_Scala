@@ -15,4 +15,4 @@
 - Column Operations on a DataFrame
 > Column Rename, Drop and Coalesce functions on a DataFrame. [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/ColumnOperations)
 - Apply Date Functions and Transformations
-> Apply Date Functions and Transformations[Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/useCase/useCase02)
+> Extract Month (Short & Long) format, apply aggregations and Pivot Table. [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/useCase/useCase02)
