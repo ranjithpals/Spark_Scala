@@ -16,3 +16,5 @@
 > Column Rename, Drop and Coalesce functions on a DataFrame. [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/ColumnOperations)
 - Apply Date Functions and Transformations
 > Extract Month (Short & Long) format, apply aggregations and Pivot Table. [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/useCase/useCase02)
+- DataFrame Joins with Broadcast
+> Comparison on Join Operations performed on DataFrames with different approaches [Link](https://github.com/ranjithpals/Spark_Scala/tree/master/DataFrame/useCase/useCase03)
