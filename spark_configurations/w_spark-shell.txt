@@ -1,0 +1,1 @@
+spark2-shell --conf spark.dynamicAllocation.enabled=false --master yarn --num-executors 10 --executor-cores 2 --executor-memory 2G

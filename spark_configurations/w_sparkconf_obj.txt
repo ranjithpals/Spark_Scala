@@ -1,0 +1,77 @@
+SCALA - Spark Config
+=====================
+
+scala> 
+
+scala> sc.stop()
+
+scala> import org.apache.spark.SparkConf
+import org.apache.spark.SparkConf
+
+scala> import org.apache.spark.SparkContext
+import org.apache.spark.SparkContext
+
+scala> val conf = new SparkConf()
+.set("spark.shuffle.service.enabled", "True")
+.set("spark.dynamicAllocation.enabled","True")
+.set("spark.dynamicAllocation.executorIdleTimeout","120s")
+.set("spark.dynamicAllocation.initialExecutors","2")
+.set("spark.dynamicAllocation.maxExecutors","10")
+.set("spark.dynamicAllocation.minExecutors","0")
+.set("spark.dynamicAllocation.executorAllocationRatio","1")
+
+.set("spark.shuffle.service.enabled", "false")
+.set("spark.dynamicAllocation.enabled","false")
+
+val conf = new SparkConf()
+.set("spark.shuffle.service.enabled", "True")
+.set("spark.dynamicAllocation.enabled","True")
+.set("spark.executor.instances","5")
+.set("spark.driver.allowMultipleContexts","true")
+.set("spark.executor.memory","5g")
+.set("spark.executor.cores","1")
+
+
+.set("spark.cores.max", "1")
+
+conf: org.apache.spark.SparkConf = org.apache.spark.SparkConf@51a3e3b4
+
+scala> val sc = new SparkContext(conf) # val sc = SparkContext.getOrCreate(conf)
+
+scala> val rdd1 = sc.textFile("bigLogFinal.txt")
+scala> val rdd2 = rdd1.map(x=>(x.split(":")(0),1)).reduceByKey((x,y)=>x+y)
+scala> val rdd3 = rdd2.collect()
+
+spark2-shell --master yarn --conf spark.shuffle.service.enabled=True --conf spark.dynamicAllocation.enabled=True --conf spark.dynamicAllocation.executorIdleTimeout=120s \
+--conf spark.dynamicAllocation.initialExecutors=1 --conf spark.dynamicAllocation.maxExecutors=3 --conf spark.dynamicAllocation.minExecutors=0 --conf spark.dynamicAllocation.executorAllocationRatio=1
+
+spark2-shell --conf spark.dynamicAllocation.enabled=false --master yarn --num-executors 20 --executor-cores 2 --executor-memory 2G
+
+
+pyspark --master yarn --conf spark.shuffle.service.enabled=True --conf spark.dynamicAllocation.enabled=True --conf spark.dynamicAllocation.executorIdleTimeout=120s \
+--conf spark.dynamicAllocation.initialExecutors=2 --conf spark.dynamicAllocation.maxExecutors=4 --conf spark.dynamicAllocation.minExecutors=2 \
+--conf spark.dynamicAllocation.executorAllocationRatio=1
+
+rdd1 = sc.textFile("bigLogFinal.txt")
+rdd2 = rdd1.map(lambda x: (x.split(":")[0],x.split(":")[1]))
+rdd3 = rdd2.groupByKey()
+rdd4 = rdd3.map(lambda x: (x[0],len(x[1])))
+rdd5 = rdd4.collect()
+
+conf = SparkConf()
+conf.set("spark.shuffle.service.enabled", "True")
+conf.set("spark.dynamicAllocation.enabled","True")
+conf.set("spark.executor.instances","5")
+conf.set("spark.driver.allowMultipleContexts","true")
+conf.set("spark.executor.memory","5g")
+conf.set("spark.executor.cores","1")
+
+conf.set("spark.shuffle.service.enabled", "True")
+conf.set("spark.dynamicAllocation.enabled","True")
+conf.set("spark.dynamicAllocation.executorIdleTimeout","120s")
+conf.set("spark.dynamicAllocation.initialExecutors","2")
+conf.set("spark.dynamicAllocation.maxExecutors","10")
+conf.set("spark.dynamicAllocation.minExecutors","0")
+conf.set("spark.dynamicAllocation.executorAllocationRatio","1")
+
+sc = SparkContext(conf=conf)
