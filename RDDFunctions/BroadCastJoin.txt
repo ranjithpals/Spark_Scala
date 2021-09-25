@@ -1,0 +1,83 @@
+Chapter 14 - Broadcast Join
+==============================
+RDD
+----
+
+spark2-shell --conf spark.dynamicAllocation.enabled=false --master yarn --num-executors 6 --executor-cores 2 --executor-memory 3G --conf spark.ui.port=4060
+
+--conf spark.executor.memory=2G
+
+val rdd1 = sc.textFile("bigLogNew.txt")
+val rdd2 = rdd1.map(x=>(x.split(':')(0), x.split(':')(1)))
+val ar = Array(("ERROR", 0), ("WARN", 1))
+val rdd3 = sc.parallelize(ar)
+val rdd4 = rdd2.join(rdd3)
+rdd4.saveAsTextFile("JoinResult02")
+
+http://m01.itversity.com:18081/history/application_1624709891350_33302/executors/
+
+2G - 400 MB = 1600 MB
+1600 - 300 = 1300 MB
+1300 * 0.6 = 650+130 ~ 800 MB
+executor - 400 MB
+storage - 400 MB
+
+*** HAD ISSUES WHEN executor-memory 2G as the reducer would need a mimimum of atleast 700 MB for atleast 1 of the 2 executors which performs the Reduce Operation ***
+http://m01.itversity.com:18081/history/application_1624709891350_33300/executors/
+
+Using Broadcast join
+======================
+
+val rdd1 = sc.textFile("bigLogNew.txt")
+val rdd2 = rdd1.map(x=>(x.split(':')(0), x.split(':')(1)))
+val ar = Array(("ERROR", 0), ("WARN", 1))
+val KeyMap = ar.toMap
+val bcast = sc.broadcast(KeyMap)
+val rdd3 = rdd2.map(x => (x._1, x._2, bcast.value(x._1)))
+rdd3.saveAsTextFile("JoinResult03")
+
+http://m01.itversity.com:18081/history/application_1624709891350_33814/jobs/
+
+DataFrame
+----------
+
+Disabling broadcast join and using Infer Schema - More time required to complete the job
+------------------------------------------------------------------------------------------
+
+spark2-shell --conf spark.dynamicAllocation.enabled=false --master yarn --num-executors 21
+
+val orderDF = spark.read.format("csv").option("inferSchema", "true").option("header", "true").option("path", "orders.csv").load
+val customerDF = spark.read.format("csv").option("inferSchema", "true").option("header", "true").option("path", "customers.csv").load
+
+spark.conf.set("spark.sql.autoBroadcastJoinThreshold", -1)
+
+val joinDF = orderDF.join(customerDF, orderDF("order_customer_id") === customerDF("customer_id"))
+
+joinDF.write.csv("joinOutput01")
+
+# http://m01.itversity.com:18081/history/application_1624709891350_35820/jobs/
+Since this going to be a regular join which involves shuffling, there will be 200 partitions due to the default value of spark.sql.shuffle.partitions=200
+
+Without disabling broadcast join and DO NOT INFER Schema - Less time to complete the job
+--------------------------------------------------------------------------------------------
+
+spark2-shell --conf spark.dynamicAllocation.enabled=false --master yarn --num-executors 21
+
+# Create Schema using StructType
+
+import org.apache.spark.sql.types._
+
+val ordersSchema = StructType(
+			List(StructField("order_id", IntegerType, true),
+			     StructField("order_date", TimestampType, true),
+      			     StructField("order_customer_id", IntegerType, true),
+			     StructField("order_status", StringType, true)))
+						 
+val orderDF = spark.read.format("csv").option("header", "true").schema(ordersSchema).option("path", "orders.csv").load
+val customerDF = spark.read.format("csv").option("inferSchema", "true").option("header", "true").option("path", "customers.csv").load # Inferschema for small dataset
+
+val joinDF = orderDF.join(customerDF, orderDF("order_customer_id") === customerDF("customer_id"))
+
+joinDF.write.csv("joinOutput02")
+
+# http://m01.itversity.com:18081/history/application_1624709891350_35824/jobs/
