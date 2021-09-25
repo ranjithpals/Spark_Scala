@@ -1,0 +1,242 @@
+
+SCALA - Spark Config
+=====================
+
+scala> 
+
+scala> sc.stop()
+
+scala> import org.apache.spark.SparkConf
+import org.apache.spark.SparkConf
+
+scala> import org.apache.spark.SparkContext
+import org.apache.spark.SparkContext
+
+scala> val conf = new SparkConf()
+.set("spark.shuffle.service.enabled", "True")
+.set("spark.dynamicAllocation.enabled","True")
+.set("spark.dynamicAllocation.executorIdleTimeout","120s")
+.set("spark.dynamicAllocation.initialExecutors","2")
+.set("spark.dynamicAllocation.maxExecutors","10")
+.set("spark.dynamicAllocation.minExecutors","0")
+.set("spark.dynamicAllocation.executorAllocationRatio","1")
+
+.set("spark.shuffle.service.enabled", "false")
+.set("spark.dynamicAllocation.enabled","false")
+
+val conf = new SparkConf()
+.set("spark.shuffle.service.enabled", "True")
+.set("spark.dynamicAllocation.enabled","True")
+.set("spark.executor.instances","5")
+.set("spark.driver.allowMultipleContexts","true")
+.set("spark.executor.memory","5g")
+.set("spark.executor.cores","1")
+
+
+.set("spark.cores.max", "1")
+
+conf: org.apache.spark.SparkConf = org.apache.spark.SparkConf@51a3e3b4
+
+scala> val sc = new SparkContext(conf) # val sc = SparkContext.getOrCreate(conf)
+
+scala> val rdd1 = sc.textFile("bigLogFinal.txt")
+scala> val rdd2 = rdd1.map(x=>(x.split(":")(0),1)).reduceByKey((x,y)=>x+y)
+scala> val rdd3 = rdd2.collect()
+
+spark2-shell --master yarn --conf spark.shuffle.service.enabled=True --conf spark.dynamicAllocation.enabled=True --conf spark.dynamicAllocation.executorIdleTimeout=120s \
+--conf spark.dynamicAllocation.initialExecutors=1 --conf spark.dynamicAllocation.maxExecutors=3 --conf spark.dynamicAllocation.minExecutors=0 --conf spark.dynamicAllocation.executorAllocationRatio=1
+
+spark2-shell --conf spark.dynamicAllocation.enabled=false --master yarn --num-executors 20 --executor-cores 2 --executor-memory 2G
+
+
+pyspark --master yarn --conf spark.shuffle.service.enabled=True --conf spark.dynamicAllocation.enabled=True --conf spark.dynamicAllocation.executorIdleTimeout=120s \
+--conf spark.dynamicAllocation.initialExecutors=2 --conf spark.dynamicAllocation.maxExecutors=4 --conf spark.dynamicAllocation.minExecutors=2 \
+--conf spark.dynamicAllocation.executorAllocationRatio=1
+
+rdd1 = sc.textFile("bigLogFinal.txt")
+rdd2 = rdd1.map(lambda x: (x.split(":")[0],x.split(":")[1]))
+rdd3 = rdd2.groupByKey()
+rdd4 = rdd3.map(lambda x: (x[0],len(x[1])))
+rdd5 = rdd4.collect()
+
+conf = SparkConf()
+conf.set("spark.shuffle.service.enabled", "True")
+conf.set("spark.dynamicAllocation.enabled","True")
+conf.set("spark.executor.instances","5")
+conf.set("spark.driver.allowMultipleContexts","true")
+conf.set("spark.executor.memory","5g")
+conf.set("spark.executor.cores","1")
+
+conf.set("spark.shuffle.service.enabled", "True")
+conf.set("spark.dynamicAllocation.enabled","True")
+conf.set("spark.dynamicAllocation.executorIdleTimeout","120s")
+conf.set("spark.dynamicAllocation.initialExecutors","2")
+conf.set("spark.dynamicAllocation.maxExecutors","10")
+conf.set("spark.dynamicAllocation.minExecutors","0")
+conf.set("spark.dynamicAllocation.executorAllocationRatio","1")
+
+sc = SparkContext(conf=conf)
+=================================================================
+
+spark2-shell --conf spark.dynamicAllocation.enabled=false --master yarn --num-executors 10 --executor-cores 2 --executor-memory 2G
+
+# Read file
+val rdd1 = sc.textFile("bigLogFinal.txt")
+
+val random = scala.util.Random
+val start = 1
+val end = 60
+
+# Perform Salting to, have more number of unique key values 
+val rdd2 = rdd1.map(x=>(x.split(":")(0),1)).reduceByKey((x,y)=>x+y)
+val rdd3 = rdd2.collect()
+
+http://m01.itversity.com:18081/history/application_1624709891350_29521/executors/
+
+http://m01.itversity.com:18081/history/application_1624709891350_29713/jobs/
+
+http://m01.itversity.com:18081/history/application_1624709891350_29994/stages/
+========================================================
+
+Spark Libraries
+---------------
+
+https://mvnrepository.com/artifact/com.databricks/spark-xml
+
+Chapter 14 - Broadcast Join
+==============================
+RDD
+----
+
+spark2-shell --conf spark.dynamicAllocation.enabled=false --master yarn --num-executors 6 --executor-cores 2 --executor-memory 3G --conf spark.ui.port=4060
+
+--conf spark.executor.memory=2G
+
+val rdd1 = sc.textFile("bigLogNew.txt")
+val rdd2 = rdd1.map(x=>(x.split(':')(0), x.split(':')(1)))
+val ar = Array(("ERROR", 0), ("WARN", 1))
+val rdd3 = sc.parallelize(ar)
+val rdd4 = rdd2.join(rdd3)
+rdd4.saveAsTextFile("JoinResult02")
+
+http://m01.itversity.com:18081/history/application_1624709891350_33302/executors/
+
+2G - 400 MB = 1600 MB
+1600 - 300 = 1300 MB
+1300 * 0.6 = 650+130 ~ 800 MB
+executor - 400 MB
+storage - 400 MB
+
+*** HAD ISSUES WHEN executor-memory 2G as the reducer would need a mimimum of atleast 700 MB for atleast 1 of the 2 executors which performs the Reduce Operation ***
+http://m01.itversity.com:18081/history/application_1624709891350_33300/executors/
+
+Using Broadcast join
+======================
+
+val rdd1 = sc.textFile("bigLogNew.txt")
+val rdd2 = rdd1.map(x=>(x.split(':')(0), x.split(':')(1)))
+val ar = Array(("ERROR", 0), ("WARN", 1))
+val KeyMap = ar.toMap
+val bcast = sc.broadcast(KeyMap)
+val rdd3 = rdd2.map(x => (x._1, x._2, bcast.value(x._1)))
+rdd3.saveAsTextFile("JoinResult03")
+
+http://m01.itversity.com:18081/history/application_1624709891350_33814/jobs/
+
+DataFrame
+----------
+
+Disabling broadcast join and using Infer Schema - More time required to complete the job
+------------------------------------------------------------------------------------------
+
+spark2-shell --conf spark.dynamicAllocation.enabled=false --master yarn --num-executors 21
+
+val orderDF = spark.read.format("csv").option("inferSchema", "true").option("header", "true").option("path", "orders.csv").load
+val customerDF = spark.read.format("csv").option("inferSchema", "true").option("header", "true").option("path", "customers.csv").load
+
+spark.conf.set("spark.sql.autoBroadcastJoinThreshold", -1)
+
+val joinDF = orderDF.join(customerDF, orderDF("order_customer_id") === customerDF("customer_id"))
+
+joinDF.write.csv("joinOutput01")
+
+# http://m01.itversity.com:18081/history/application_1624709891350_35820/jobs/
+Since this going to be a regular join which involves shuffling, there will be 200 partitions due to the default value of spark.sql.shuffle.partitions=200
+
+Without disabling broadcast join and DO NOT INFER Schema - Less time to complete the job
+--------------------------------------------------------------------------------------------
+
+spark2-shell --conf spark.dynamicAllocation.enabled=false --master yarn --num-executors 21
+
+# Create Schema using StructType
+
+import org.apache.spark.sql.types._
+
+val ordersSchema = StructType(
+			List(StructField("order_id", IntegerType, true),
+			     StructField("order_date", TimestampType, true),
+      			     StructField("order_customer_id", IntegerType, true),
+			     StructField("order_status", StringType, true)))
+						 
+val orderDF = spark.read.format("csv").option("header", "true").schema(ordersSchema).option("path", "orders.csv").load
+val customerDF = spark.read.format("csv").option("inferSchema", "true").option("header", "true").option("path", "customers.csv").load # Inferschema for small dataset
+
+val joinDF = orderDF.join(customerDF, orderDF("order_customer_id") === customerDF("customer_id"))
+
+joinDF.write.csv("joinOutput02")
+
+# http://m01.itversity.com:18081/history/application_1624709891350_35824/jobs/
+--------------------------------------------------------------------------
+
+Deploy Mode Cluster Vs Client
+==============================
+
+Cluster Mode
+-------------
+
+spark-submit \
+--class LoglevelGrouping \
+--deploy-mode cluster \
+--master yarn \
+--conf spark.dynamicAllocation.enabled=false \
+--num-executors 4 \
+--executor-memory 3G \
+Jar/wordCount.jar bigLogNew.txt
+
+** JAR file is located in the edge node from where the job is triggered.
+
+http://m01.itversity.com:18081/history/application_1624709891350_36460/1/jobs/
+
+Client Mode
+-------------
+** If Cluster mode is NOT specified then it is Client mode by DEFAULT
+
+spark-submit \
+--class LoglevelGrouping \
+--deploy-mode client \
+--master yarn \
+--num-executors 4 \
+--executor-memory 3G \
+Jar/wordCount.jar  bigLogNew.txt
+
+=====================================
+
+Python
+--------
+
+spark-submit \
+--deploy-mode cluster \
+--master yarn \
+--num-executors 4 \
+--executor-memory 3G \
+scripts/LoglevelGrouping.py bigLogNew.txt
+
+-Client Mode: http://m01.itversity.com:18081/history/application_1624709891350_36495/jobs/
+-Cluster Mode: http://m01.itversity.com:18081/history/application_1624709891350_36497/1/jobs/
+-----------
+=======================================================================
+Sometimes executor has to execute tasks in series also? Ans - True
+
+For long running jobs, we can prefer dynamic allocation, reason being it can aquire more resources througout the lifecycle of the job? Ans - False
+
+Shuffle uses execution memory.
