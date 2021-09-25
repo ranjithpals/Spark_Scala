@@ -105,8 +105,6 @@ https://mvnrepository.com/artifact/com.databricks/spark-xml
 
 Chapter 14 - Broadcast Join
 ==============================
-RDD
-----
 
 spark2-shell --conf spark.dynamicAllocation.enabled=false --master yarn --num-executors 6 --executor-cores 2 --executor-memory 3G --conf spark.ui.port=4060
 
@@ -143,8 +141,10 @@ rdd3.saveAsTextFile("JoinResult03")
 
 http://m01.itversity.com:18081/history/application_1624709891350_33814/jobs/
 
-DataFrame
-----------
+===========================================================================
+
+Chapter-14
+============
 
 Disabling broadcast join and using Infer Schema - More time required to complete the job
 ------------------------------------------------------------------------------------------

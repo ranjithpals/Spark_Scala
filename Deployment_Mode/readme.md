@@ -49,6 +49,6 @@ if __name__ == '__main__':
 ```
 To retrieve string arguements provided with the spark-submit command.
 
--Client Mode: http://m01.itversity.com:18081/history/application_1624709891350_36495/jobs/
--Cluster Mode: http://m01.itversity.com:18081/history/application_1624709891350_36497/1/jobs/
+- Client Mode: http://m01.itversity.com:18081/history/application_1624709891350_36495/jobs/
+- Cluster Mode: http://m01.itversity.com:18081/history/application_1624709891350_36497/1/jobs/
 
