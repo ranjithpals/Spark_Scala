@@ -1,4 +1,4 @@
-Catalyst Optimizer
+# Catalyst Optimizer #
 
 ![Stages of Catalyst Optimizer](Spark_Catalyst_Optimizer.jpg)
 
@@ -29,40 +29,31 @@ our query is parsed and we get a parsed logical plan - unresolved
 it checks for any of the syntax errors.
 syntax is correct
 2. Resolved/Analysed Logical plan..
-it will try to resolve the table name the column names etc..
-if the columnname or table name is not available then we will get analysis exception.
-if we have referred to the correct columnnames and table name
+	- it will try to resolve the table name the column names etc..
+	- if the columnname or table name is not available then we will get analysis exception.
+	- if we have referred to the correct columnnames and table name
 3. Optimized Logical Plan - catalyst optimizer.
-filter push down
-combining of filters..
-combining of projections
-There are many such rules which are already in place.
-If we want we can add our own rules in the catalyst optimizer.
-consider you are doing a Aggregate.
-as per the logical plan lets say it says we have to do Aggregate.
-in physical plan..
-16
-physical plan1
-===============
+	- filter push down
+	- combining of filters..
+	- combining of projections
+4. There are many such rules which are already in place.
+5. If we want we can add our own rules in the catalyst optimizer.
+
+### Consider you are doing a Aggregate ###
+- As per the logical plan lets say it says we have to do Aggregate in physical plan..
+
+### physical plan1 ###
 sortAggregate
-physical plan2
-===============
+
+### physical plan2 ###
 HashAggregate
-It will select the physical plan which is the most optimized one with minimum cost.
-This selected physical plan is converted to Lower Level API's
-RDD code.
-Spark Optimization Session - 20
-================================
+
+- It will select the physical plan which is the most optimized one with minimum cost.
+- This selected physical plan is converted to Lower Level API's
 
 a * b
-if b is 1 then return a
-Catalyst optimizer
-RDD vs Structured API's
-Parsed Logical Plan - Unresolved
-Analysed/Resolved Logical Plan
-17
-Optimized Logical Plan
-Physical Plan
+if b is 1 then return a 
+### Catalyst optimizer ###
 val df1 = spark.read.format("csv").option("header",
 true).option("inferSchema",true).option("path","/Users/trendytech/Desktop/students.csv").load
 df1.createOrReplaceTempView("students")
@@ -70,7 +61,8 @@ spark.sql("select student_id from (select student_id, exam_center_id from studen
 student_id <5").explain(true)
 spark.sql("select student_id,sum(score) from (select student_id, exam_center_id,score from
 students where exam_center_id=5) where student_id < 5 group by student_id ").explain(true)
-http://localhost:4040/
+
+```
 import org.apache.spark.sql.catalyst.plans.logical.LogicalPlan
 import org.apache.spark.sql.catalyst.rules.Rule
 import org.apache.spark.sql.catalyst.expressions.Multiply
@@ -83,4 +75,5 @@ println("optimization of one applied")
 left
 }
 }
-spark.experimental.extraOptimizations = Seq(MultiplyOptimizationRule
+spark.experimental.extraOptimizations = Seq(MultiplyOptimizationRule)
+```
