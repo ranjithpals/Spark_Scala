@@ -1,0 +1,59 @@
+QUERY PLAN
+===========
+
+Sample Data
+-----------
+
+scala> dfCustomers.show(10)
++-----------+--------------+--------------+--------------+-----------------+--------------------+-------------+--------------+----------------+
+|customer_id|customer_fname|customer_lname|customer_email|customer_password|     customer_street|customer_city|customer_state|customer_zipcode|
++-----------+--------------+--------------+--------------+-----------------+--------------------+-------------+--------------+----------------+
+|          1|       Richard|     Hernandez|     XXXXXXXXX|        XXXXXXXXX|  6303 Heather Plaza|  Brownsville|            TX|           78521|
+|          2|          Mary|       Barrett|     XXXXXXXXX|        XXXXXXXXX|9526 Noble Embers...|    Littleton|            CO|           80126|
+|          3|           Ann|         Smith|     XXXXXXXXX|        XXXXXXXXX|3422 Blue Pioneer...|       Caguas|            PR|           00725|
+|          4|          Mary|         Jones|     XXXXXXXXX|        XXXXXXXXX|  8324 Little Common|   San Marcos|            CA|           92069|
+|          5|        Robert|        Hudson|     XXXXXXXXX|        XXXXXXXXX|10 Crystal River ...|       Caguas|            PR|           00725|
+|          6|          Mary|         Smith|     XXXXXXXXX|        XXXXXXXXX|3151 Sleepy Quail...|      Passaic|            NJ|           07055|
+|          7|       Melissa|        Wilcox|     XXXXXXXXX|        XXXXXXXXX|9453 High Concession|       Caguas|            PR|           00725|
+|          8|         Megan|         Smith|     XXXXXXXXX|        XXXXXXXXX|3047 Foggy Forest...|     Lawrence|            MA|           01841|
+|          9|          Mary|         Perez|     XXXXXXXXX|        XXXXXXXXX| 3616 Quaking Street|       Caguas|            PR|           00725|
+|         10|       Melissa|         Smith|     XXXXXXXXX|        XXXXXXXXX|8598 Harvest Beac...|     Stafford|            VA|           22554|
++-----------+--------------+--------------+--------------+-----------------+--------------------+-------------+--------------+----------------+
+only showing top 10 rows
+
+# Create View
+--------------
+dfCustomers.createOrReplaceTempView("customers")
+
+# Display Query plans
+---------------------
+spark.sql("select customer_lname, count(customer_id) from (select customer_id, customer_lname from customers where customer_id < 5) group by customer_lname").explain(true)
+
+scala> spark.sql("select customer_lname, count(customer_id) from (select customer_id, customer_lname from customers where customer_id < 5) group by customer_lname").explain(true)
+== Parsed Logical Plan ==
+'Aggregate ['customer_lname], ['customer_lname, unresolvedalias('count('customer_id), None)]
++- 'SubqueryAlias `__auto_generated_subquery_name`
+   +- 'Project ['customer_id, 'customer_lname]
+      +- 'Filter ('customer_id < 5)
+         +- 'UnresolvedRelation `customers`
+
+== Analyzed Logical Plan ==
+customer_lname: string, count(customer_id): bigint
+Aggregate [customer_lname#2], [customer_lname#2, count(customer_id#0) AS count(customer_id)#52L]
++- SubqueryAlias `__auto_generated_subquery_name`
+   +- Project [customer_id#0, customer_lname#2]
+      +- Filter (customer_id#0 < 5)
+         +- SubqueryAlias `customers`
+            +- Relation[customer_id#0,customer_fname#1,customer_lname#2,customer_email#3,customer_password#4,customer_street#5,customer_city#6,customer_state#7,customer_zipcode#8] JDBCRelation(customers) [numPartitions=1]
+
+== Optimized Logical Plan ==
+Aggregate [customer_lname#2], [customer_lname#2, count(customer_id#0) AS count(customer_id)#52L]
++- Project [customer_id#0, customer_lname#2]
+   +- Filter (isnotnull(customer_id#0) && (customer_id#0 < 5))
+      +- Relation[customer_id#0,customer_fname#1,customer_lname#2,customer_email#3,customer_password#4,customer_street#5,customer_city#6,customer_state#7,customer_zipcode#8] JDBCRelation(customers) [numPartitions=1]
+
+== Physical Plan ==
+*(2) HashAggregate(keys=[customer_lname#2], functions=[count(customer_id#0)], output=[customer_lname#2, count(customer_id)#52L])
++- Exchange hashpartitioning(customer_lname#2, 200)
+   +- *(1) HashAggregate(keys=[customer_lname#2], functions=[partial_count(customer_id#0)], output=[customer_lname#2, count#54L])
+      +- *(1) Scan JDBCRelation(customers) [numPartitions=1] [customer_id#0,customer_lname#2] PushedFilters: [*IsNotNull(customer_id), *LessThan(customer_id,5)], ReadSchema: struct<customer_id:int,customer_lname:string>

@@ -1,0 +1,25 @@
+Connect to other sources
+=========================
+
+Using Spark to Read data from other sources:
+============================================
+
+From Shell
+----------
+
+1. Provide the path for driver class files, which are used to connect to the DB.
+spark2-shell --master <mode> --driver-class-path /usr/share/java/mysql-connector-java.jar
+spark2-shell --master local[*] --driver-class-path /usr/share/java/mysql-connector-java.jar
+	b. Wherever the MapReduce tasks are performed, the Jar file need to be located.
+	c. Typically java jar files are installed on the edge node/client, so run with local mode: local[*]
+	d. If tasks are to be executed in a cluster, then we need to run cluster mode: yarn
+2. Construct the connection URL with the Database added 
+val connection_url = "jdbc:mysql://ms.itversity.com/retail_db"
+3. Set the properties file for other details - 
+val mysql_props = new java.util.Properties
+mysql_props.setProperty("user", "retail_user")
+mysql_props.setProperty("password", "itversity")
+4. Spark API to read the data - 
+val dfCustomers = spark.read.jdbc(connection_url, "customers", mysql_props)
+5. Display the DataFrame -
+dfCustomers.show()
