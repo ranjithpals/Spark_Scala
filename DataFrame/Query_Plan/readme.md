@@ -7,18 +7,18 @@ Catalyst Optimizer
 - Rule Based Optimization.
 	- Many rules are already available. Also if we want we can add our own optimization rules.
 
-Students.csv - 60 mb
-student_id,exam_center_id,subject,year,quarter,score,grade
-1,1,Math,2005,1,41,D
-1,1,Spanish,2005,1,51,C
-1,1,German,2005,1,39,D
-1,1,Physics,2005,1,35,D
-1,1,Biology,2005,1,53,C
-1,1,Philosophy,2005,1,73,B
-1,1,Modern Art,2005,1,32,E
-1,1,History,2005,1,43,D
-1,1,Geography,2005,1,54,C
-15
+- Students.csv - 60 mb
+
+|student_id |exam_center_id |subject |year |quarter |score |grade |
+|-----------|---------------|--------|-----|--------|------|------|
+|1 |1 |Math |2005 |1 |41 |D |
+|1 |1 |Spanish |2005 |1 |51 |C |
+|1|1|German|2005|1|39|D|
+|1|1|Physics|2005|1|35|D|
+|1|1|Biology|2005|1|53|C|
+|1|1|Philosophy|2005|1|73|B|
+|1|1|Modern Art|2005|1|32|E|
+
 val df1 =
 spark.read.format("csv").option("header",true).option("inferSchema",true).option("path","/Users/t
 rendytech/Desktop/students.csv").load
@@ -53,16 +53,7 @@ This selected physical plan is converted to Lower Level API's
 RDD code.
 Spark Optimization Session - 20
 ================================
-student_id,exam_center_id,subject,year,quarter,score,grade
-1,1,Math,2005,1,41,D
-1,1,Spanish,2005,1,51,C
-1,1,German,2005,1,39,D
-1,1,Physics,2005,1,35,D
-1,1,Biology,2005,1,53,C
-1,1,Philosophy,2005,1,73,B
-1,1,Modern Art,2005,1,32,E
-1,1,History,2005,1,43,D
-1,1,Geography,2005,1,54,C
+
 a * b
 if b is 1 then return a
 Catalyst optimizer
