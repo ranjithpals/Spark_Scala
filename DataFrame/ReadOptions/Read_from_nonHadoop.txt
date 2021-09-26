@@ -23,3 +23,6 @@ mysql_props.setProperty("password", "itversity")
 val dfCustomers = spark.read.jdbc(connection_url, "customers", mysql_props)
 5. Display the DataFrame -
 dfCustomers.show()
+
+*** JDBC To Other Databases ***
+https://spark.apache.org/docs/latest/sql-data-sources-jdbc.html
