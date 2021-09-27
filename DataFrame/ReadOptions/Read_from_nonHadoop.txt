@@ -1,5 +1,4 @@
-Connect to other sources
-=========================
+*** Connect to other sources ***
 
 Using Spark to Read data from other sources:
 ============================================
