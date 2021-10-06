@@ -269,3 +269,8 @@ For long running jobs, we can prefer dynamic allocation, reason being it can aqu
 
 Shuffle uses execution memory.
 
+Why Small files metadata causes an issue eve though the Name Node is high end hardware housing the metadata, and what is the size of each row of metadata? I think the issue is the 
+network traffice between the RM which has the data and the AM which distributes, schedules and monitors the tasks. which are based on the blocks/objects
+
+Why in Scala join API, it uses 3 equal to's === as part of the join condition?
+
