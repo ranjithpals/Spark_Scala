@@ -274,3 +274,20 @@ network traffice between the RM which has the data and the AM which distributes,
 
 Why in Scala join API, it uses 3 equal to's === as part of the join condition?
 
+Scenario: Retail chain management wants a report every one hour, of the sales across multiple outlets, they would like to understand the Trends
+of how much quantities of each of the categories of items are sold like fresh produce, groceries, bakery, stationery. This has to be compared with 
+historical data to produce the data required to generate trending reports. How to architect for this solution.
+
+Hive External Table vs Managed Table, explain one practical need for these different tables?
+- Managed: Used for spike or research/analysis by not more than 1 person, it can be deleted upon dropping the table.
+- EXTERNAL - Used by a team or multiple teams, there could be a huge file, where each team could have a different schema they are using to utilize the data. 
+Even if One team is NO Need of the table, they can just drop the table and move on.
+TRY THIS* - have a hdfs file and have 2 external tables created with different schemas
+
+Perform in Python
+
+Case class in Scala, what is the advantage in with case class when compared to normal class? why it is used?
+
+Have a dataset with columns Name, City, Age which contains duplicates with same Name, City but becomes distinct based on Age, 
+write a query to get only one record for each set of duplicate records. (Do not use Row Number function) - Ans: use collect_list or first
+
