@@ -289,5 +289,5 @@ Perform in Python
 Case class in Scala, what is the advantage in with case class when compared to normal class? why it is used?
 
 Have a dataset with columns Name, City, Age which contains duplicates with same Name, City but becomes distinct based on Age, 
-write a query to get only one record for each set of duplicate records. (Do not use Row Number function) - Ans: use collect_list or first
+write a query to get only one record for each set of duplicate records. (Do not use Row Number function) - Ans:2 use collect_list or collect_set
 
