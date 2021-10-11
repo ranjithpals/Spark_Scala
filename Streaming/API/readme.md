@@ -1,5 +1,13 @@
 ### OUTPUT MODE
+- Append - Forgets what was processed in the previous batches
+- Complete - Remembers all the data processed since the start/re-start of the 
+- Update - Only updates to existing records and New records
 
+### TRIGGERS
+- **Unspecified** - Batch is created when a new record/file is produced in the source
+- **Time Interval** - Batch is created upon completion of the current batch + (followed by) the time specified as the interval. 
+- **One-Time** - Similar to Batch, like runs once in a day and still remembers the state (previous runs details) before running the next time.
+- **Continous** - Still under development
 ### CONFIGURATIONS - Additional
 - session.config("spark.streaming.stopGracefullyOnShutdown", "true")
 - session.config("spark.sql.shuffle.partitions", 3)
