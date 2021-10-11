@@ -3,8 +3,8 @@
 ### CONFIGURATIONS - Additional
 - session.config("spark.streaming.stopGracefullyOnShutdown", "true")
 - session.config("spark.sql.shuffle.partitions", 3)
-- streamWriter.trigger(Trigger.ProcessingTime("10 seconds"))
-- streamReader.option("maxFilesPerTrigger", 1)
+- streamWriter.trigger(Trigger.ProcessingTime("10 seconds")) - Triggers Writes once in specified time interval
+- streamReader.option("maxFilesPerTrigger", 1) - Creates Only one file per Trigger Session.
 ### SOURCE INPUT
 - val df1 = spark.readStream.format("json").option("path", "InputFolder")
 - val writeDf = completedOrders.writeStream.format("json").option("path", "OutputFolder")
