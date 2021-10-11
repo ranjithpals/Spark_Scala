@@ -28,6 +28,7 @@ number of files in the directory will be keep increasing.
   4. In the above option, the files are archived immediately but it slows down the job run, if there is need for quick processing then this need to be avoided.
   5. In such cases you can have your own batch job scheduled which will take care of this cleanup.
 ### Exactly Once Semantics ###
+- To achieve the Exactly Once Semantic we need to satisfy the following requirements
 1. Restart application with same Checkpoint location
 2. Use a Replayable source (File Source, Kafka) unlike Console
 3. Use Deterministic Computation - Key Identifier upon which the record is identified in the output(Sink) should be the same and should not have varying values
