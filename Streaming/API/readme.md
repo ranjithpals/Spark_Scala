@@ -6,7 +6,8 @@
 - streamWriter.trigger(Trigger.ProcessingTime("10 seconds"))
 - streamReader.option("maxFilesPerTrigger", 1)
 ### SOURCE INPUT
-- 
+- val df1 = spark.readStream.format("json").option("path", "InputFolder")
+- val writeDf = completedOrders.writeStream.format("json").option("path", "OutputFolder")
 #### FILE SOURCE
 - In the case of files being received every few seconds, after a point of time the 
 number of files in the directory will be keep increasing.
