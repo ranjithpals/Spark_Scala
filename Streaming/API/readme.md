@@ -1,4 +1,13 @@
-#### FILE SOURCE - SOURCE INPUT
+### OUTPUT MODE
+
+### CONFIGURATIONS - Additional
+- session.config("spark.streaming.stopGracefullyOnShutdown", "true")
+- session.config("spark.sql.shuffle.partitions", 3)
+- streamWriter.trigger(Trigger.ProcessingTime("10 seconds"))
+- streamReader.option("maxFilesPerTrigger", 1)
+### SOURCE INPUT
+- 
+#### FILE SOURCE
 - In the case of files being received every few seconds, after a point of time the 
 number of files in the directory will be keep increasing.
 - If we have a lot of files in folder then it will slow down the read of the subsequent files.
