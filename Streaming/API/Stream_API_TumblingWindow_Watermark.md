@@ -26,6 +26,10 @@ Code Logic
 - Clean up the State Store.
 - Send output to the Sink.
 
+**Key things about WATERMARK**
+- Watermark is the key to clean up the state store.
+- Events within the watermark are considered for results - this is guaranteed.
+- Events outside the watermark may or may not be considered.
 Console Output
 ================
 ```
