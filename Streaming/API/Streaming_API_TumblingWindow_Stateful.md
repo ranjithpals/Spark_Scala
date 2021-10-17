@@ -34,7 +34,7 @@ Deal with Late Arriving Records
 ================================
 - If we keep entertaining late arriving records (ex. records arrive after many days or months since event time (in this example) in a unbounded way it will lead to issues
 - We would not be able to clean the state, and will have to maintain all the state store since the beginning.
-- We would need to tackle this using _WaterMark_
+- We would need to tackle this using __WaterMark__
 
 Console Output
 ==============
