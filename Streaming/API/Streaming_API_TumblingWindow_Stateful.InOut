@@ -29,6 +29,12 @@ Checkpoint location
 - If the data gets increased over a period of time based on the micro-batches it creates "Out of Memory" issues.
 - This needs to be resolved either using Spark Managed cleanup or UnManaged cleanup.
 
+Deal with Late Arriving Records
+================================
+- If we keep entertaining late arriving records (ex. records arrive after many days or months since event time (in this example) in a unbounded way it will lead to issues
+- We would not be able to clean the state, and will have to maintain all the states since the beginning.
+- We would need to tackle this.
+
 Console Output
 ==============
 Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
