@@ -1,7 +1,8 @@
 ### OUTPUT MODE
-- Append - Forgets what was processed in the previous batches
-- Complete - Remembers all the data processed since the start/re-start of the 
-- Update - Only updates to existing records and New records
+- **Append** - No further updates can be performed on the published data, forgets what was processed in the previous micro-batches.
+- **Update** - Updates can be performed to existing records and New records can be published, remembers the results of the previous micro-batch (checkpointLocation)
+- **Complete** - All the results are published since the start of the Streaming Session.
+
 
 ### TRIGGERS
 - **Unspecified** - Batch is created when a new record/file is produced in the source
