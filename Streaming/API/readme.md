@@ -36,7 +36,7 @@ number of files in the directory will be keep increasing.
 4. Use a Idempotent Sink - If we process same data once again, the duplicate data should not be written to a Output source, it should either be removed or overwritten 
 
 Output Mode  | Window with Aggregate function | Watermark
-------------- | -------------------------------------------
+------------- | -------------------------------|-----------
 Append  | Records added are aggregated and published, cannot undergo more changes (per Append Def), but records falling within Window need to be updated (per Window policy, so **CONFLICT** exists, hence **N/A** | AAAAA
 Update  | Records added can be updated, since it the previous state (Aggregated result) is stored, so records falling within Window can be updated, this is **EFFICIENT and EFFECTIVE** | BBBB
 Complete  | Records added are added to the all the previous batch records, Aggregation is performed on the complete data since start of the application (checkpointLocation is not required). this is **NOT EFFICIENT** | CCCCC
