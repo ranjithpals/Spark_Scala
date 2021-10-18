@@ -35,7 +35,8 @@ number of files in the directory will be keep increasing.
 3. Use Deterministic Computation - Key Identifier upon which the record is identified in the output(Sink) should be the same and should not have varying values
 4. Use a Idempotent Sink - If we process same data once again, the duplicate data should not be written to a Output source, it should either be removed or overwritten 
 
-First Header  | Second Header
+Output Mode  | Window Aggregate
 ------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+Append  | If the 
+Update  | Content Cell
+Complete  | Content Cell
