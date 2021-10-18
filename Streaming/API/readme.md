@@ -37,6 +37,6 @@ number of files in the directory will be keep increasing.
 
 Output Mode  | Window Aggregate
 ------------- | -------------
-Append  | If the 
+Append  | Records added will need to aggregated and published, cannot undergo more changes (per Append Def), but records falling within Window need to be updated (per Window policy, so **conflict** exists, hence N/A
 Update  | Content Cell
 Complete  | Content Cell
