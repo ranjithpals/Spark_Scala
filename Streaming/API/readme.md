@@ -35,7 +35,7 @@ number of files in the directory will be keep increasing.
 3. Use Deterministic Computation - Key Identifier upon which the record is identified in the output(Sink) should be the same and should not have varying values
 4. Use a Idempotent Sink - If we process same data once again, the duplicate data should not be written to a Output source, it should either be removed or overwritten 
 
-**Output Mode  | Window Aggregate Function | Window Agg Func with Watermark**
+Output Mode  | Window Aggregate Function | Window Agg Func with Watermark
 ------------- | -------------------------------|-----------
 Append  | Records added are aggregated and published, cannot undergo more changes (per Append Def), but records falling within Window need to be updated (per Window policy, so **CONFLICT** exists, hence **N/A** | if Window gets expired based on Watermark, then those aggregated record will not undergo any change, this records will be published. So **OUTPUT** written to Sink will not be repeated and can be **CLEARED** from State Store, hence very **EFFECTIVE**, **Downsize** is have to wait until the window/record contained gets expired or Watermark duration has occured. **APPEND mode will suppress the output of the window aggregate until they cross the watermark boundary**
 Update  | Records added can be updated, since it the previous state (Aggregated result) is stored, so records falling within Window can be updated, this is **EFFICIENT and EFFECTIVE**. Every Window update is published to the sink | **Same as Window Aggregate Function except for the window expires on crossing the watermark boundary**
