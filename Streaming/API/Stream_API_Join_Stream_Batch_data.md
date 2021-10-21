@@ -1,4 +1,4 @@
-**Input Streaming Data**
+**Input - Streaming Data**
 
 {"card_id":5572427538311236,"amount":5358617,"postcode":41015,"pos_id":970896588019984,"transaction_dt":"2018-10-21 04:37:42"}
 {"card_id":5572427538311236,"amount":356492,"postcode":53149,"pos_id":160065694733720,"transaction_dt":"2018-09-22 05:21:43"}
@@ -23,10 +23,7 @@
 - The LEFT and RIGHT join works **similar to Map Side Join in MapReduce and BroadcastJoin in Spark**. 
 - The **Smaller dataset is STATIC data** and the **Streaming data is Larger Dataset**
 
-
-
-
-
+**Output - Streaming Data [Console]**
 ```
 Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
 root
