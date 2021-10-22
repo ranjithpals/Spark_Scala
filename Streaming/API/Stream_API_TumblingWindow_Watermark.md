@@ -14,9 +14,12 @@ Console Input
 Code Logic
 ============
 **WATERMARK**
-- Watermark is like setting a **expiry datetime to an existing window/aggregated records** based on the incoming record, applied when the record is processed
-- Based on the requirement from the Business, on when the majority of the records are expected, the watermark is applied.
-- **Max(watermark column) - WaterMark bandwith** (30 minute in this example) is calculated and any **Window behind the calculated value is Ignored**
+- Watermark is like setting a **expiry datetime to an record/aggregated record** based on the following calculation
+- **Watermark column - WaterMark bandwidth** (30 minute in this example) is calculated and tagged to the incoming record
+  - Typically applied when the record is processed
+  - Based on the requirement from the Business, on when the majority of the records are expected, the watermark is applied.
+- It is compared to the existing expiry date and if any records/window(s) exist **BEHIND** the incoming record.
+  - If YES, the records/Window(s) **BEHIND** the incoming record are **IGNORED**
 - The First 6 rows of the example - creates 3 batches 11 to 1115, 1115 to 1130, 1130 to 1145
 - The 7th Row when added will remove the 11 to 1115 batch as 11:48 - 30min = 11:18 and there is one batch behind the 11:18 timeline.
 - The 11 to 1115 batch will be removed from the state store.
